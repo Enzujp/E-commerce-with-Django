@@ -4,4 +4,8 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    return HttpResponse ("This is the page that confirms our set up is up and running!")
+    return render(request, 'core/index.html')
+
+
+def about(request):
+    return render(request, 'core/about.html')
