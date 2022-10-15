@@ -3,12 +3,17 @@
 {% block title %}{{ category.title }}{% endblock %}
 
 {% block content %}
+{% if product.image %}
+    <div class="image mb-4">
+        <img src="{{ product.image.url }}" alt="image of {{ product.title }}">
+    </div>
+{% endif %}
     <h1 class="text-2xl">{{ product.title }}</h1>
 
     <p class="text-xs text-gray-500">
         ${{ product.price }}
         -
-        {{product.user.username}}
+        {% firstof product.user.get_full_name product.user.username %}
     </p>
 
     {% if product.description_field %}

@@ -1,0 +1,7 @@
+{% extends 'core/base.html' %}
+
+{% block title %}}{% firstof user.get_full_name user.username  %}{% endblock %}
+
+{% block content %}
+    The vendor detail page
+{% endblock %}

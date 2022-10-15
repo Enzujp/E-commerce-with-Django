@@ -1,7 +1,7 @@
 from django.urls import path
 
-from userprofile.views import index
+from .import views
 
 urlpatterns = [
-    path('', index, name="index"),
+    path('vendors/<int:pk>/', views.vendor_detail, name="vendor_detail")
 ]
