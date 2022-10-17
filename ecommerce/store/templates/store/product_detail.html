@@ -13,7 +13,7 @@
     <p class="text-xs text-gray-500">
         ${{ product.price }}
         -
-        {% firstof product.user.get_full_name product.user.username %}
+        <a href="{% url 'vendor_detail' product.user.pk  %}">{% firstof product.user.get_full_name product.user.username %}</a>
     </p>
 
     {% if product.description_field %}
