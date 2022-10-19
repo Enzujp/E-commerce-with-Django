@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My store{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl">My store </h1>
+
+    <a href="#" class="mt-6 inline-block py-4 px-8 bg-teal-500 text-white">Add product</a>
+
+    <h2 class="mt-6 text-xl">My products</h2>
+    {% if request.user.products.all %}
+    <div class="flex flex-wrap">
+        {% for product in request.user.products.all %}
+            <div class="product w-1/3 p-2">
+                <div class="p-4 bg-gray-100">
+                    <a href="{% url 'product_detail' product.category.slug product.slug %}">
+                    {% if product.image %}
+                        <div class="image mb-2">
+                            <img src="{{ product.image.url }}" alt="image of {{ product.title }}">
+                        </div>
+                    {% endif %}
+                    <h2 class="text-xl">{{ product.title }}</h2>
+                    <p class="text-xs text-gray-600">${{ product.price }}</p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class mt-4 py-4 px-8 bg-grey-200>You don't have any products yet...</p>
+    {% endif %}
+{% endblock %}

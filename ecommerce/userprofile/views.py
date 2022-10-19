@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 
 from core.views import index
+from store.models import Product
 from .models import Userprofile
 # Create your views here.
 
@@ -15,7 +16,8 @@ def vendor_detail(request, pk):
     })
 
 def my_store(request):
-    return render(request, 'userprofile/mystore.html')
+    # products = Product.objects.
+    return render(request, 'userprofile/my_store.html')
 
 def myaccount(request):
     return render(request, 'userprofile/myaccount.html')
