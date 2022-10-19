@@ -1,13 +1,14 @@
-from unicodedata import category
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 from .models import Product, Category
 
 def search(request):
     query = request.GET.get('query', '')
-
+    products = Product.objects.filter(Q(title__icontains=query) | Q(description_field__icontains=query))
     return render(request, 'store/search.html', {
-        'query': query
+        'query': query,
+        'products': products
     })
 
 

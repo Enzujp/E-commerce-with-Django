@@ -27,7 +27,8 @@
             <div class="menu flex space-x-4">
                 {% menu %}
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'myaccount' %}" class="text-white">My Account</a>
+                    <a href="{% url 'myaccount' %}" class="text-white">My account</a>
+                    <a href="#" class="text-white">My store</a>
                 {% endif %}
             </div>
 
