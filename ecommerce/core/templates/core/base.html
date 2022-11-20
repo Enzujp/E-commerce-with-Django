@@ -32,7 +32,7 @@
             <div class="menu flex items-center space-x-4">
                 {% menu %}
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'myaccount' %}" class="py-2 px-4 bg-teal-800 text-white rounded-xl hover: bg-teal-900">My account</a>
+                    <a href="{% url 'myaccount' %}" class="py-2 px-4 bg-teal-800 text-white rounded-xl hover: bg-teal-800">My account</a>
                     <a href="{% url 'my_store' %}" class="py-2 px-4 bg-teal-800 text-white rounded-xl hover: bg-teal-900">My store</a>
                 {% endif %}
             </div>
