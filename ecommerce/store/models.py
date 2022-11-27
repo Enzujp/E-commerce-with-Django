@@ -51,6 +51,21 @@ class Product(models.Model):
     def __str__ (self):
         return self.title 
 
+    def make_thumbnail(self, image, size=(300, 300)):
+        img = Image.open(image)
+        thumb_io = BytesIO()
+        if img.mode in ("RGBA", "P"):
+            img = img.convert('RGB')
+        img.thumbnail(size)
+    
+        
+        img.save(thumb_io, 'JPEG', quality=85)
+        name = image.name.replace('uploads/product_images/', '')
+        thumbnail = File(thumb_io, name=image.name)
+
+        return thumbnail
+
+
     def get_thumbnail(self):
         if self.thumbnail:
             return self.thumbnail.url
@@ -63,15 +78,20 @@ class Product(models.Model):
             else:
                 return 'https://via.placeholder.com/240x240x.jpg'
 
-    def make_thumbnail(self, image, size=(300, 300)):
-        img = Image.open(image)
-        if img.mode in ("RGBA", "P"):
-            img = img.convert('RGB')
-        img.thumbnail(size)
-    
-        thumb_io = BytesIO()
-        img.save(thumb_io, 'JPEG', quality=85)
-        name = image.name.replace('uploads/product_images/', '')
-        thumbnail = File(thumb_io, name=image.name)
+class Order(models.Model):
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
+    zip_code = models.CharField(max_length=250)
+    city = models.CharField(max_length=250)
+    total_cost = models.IntegerField(default=0)
+    paid_amount = models.IntegerField(blank=True, null=True)
+    merchant_id = models.CharField(max_length=250)
+    created_by = models.ForeignKey(User, related_name='orders', on_delete=models.SET_NULL,  null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-        return thumbnail
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+    Product = models.ForeignKey(Product, related_name="items", on_delete=models.CASCADE)
+    price = models.IntegerField()
+    quantity = models.IntegerField(default=1)

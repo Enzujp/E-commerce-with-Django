@@ -1,7 +1,12 @@
 from tkinter import Widget
 from django import forms
 
-from .models import Product 
+from .models import Product, Order
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('first_name', 'last_name', 'address', 'zip_code', 'city', )
 
 class ProductForm(forms.ModelForm):
     class Meta:
