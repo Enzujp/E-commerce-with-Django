@@ -6,11 +6,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.shortcuts import get_object_or_404
 
 from core.views import index
 from .models import Userprofile
 from store.forms import ProductForm
-from store.models import Product, Category
+from store.models import Product, Category, Order, OrderItem
 
 # Create your views here.
 
@@ -27,9 +28,19 @@ def vendor_detail(request, pk):
 @login_required
 def my_store(request):
     products = request.user.products.exclude(status=Product.DELETED)
+    order_items = OrderItem.objects.filter(product__user=request.user)
     return render(request, 'userprofile/my_store.html', {
-        'products': products 
+        'products': products,
+        'order_items': order_items 
     })
+
+@login_required
+def my_store_order_detail(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    return render(request, 'userprofile/my_store_order_detail.html', {
+        'order': order
+    })
+
 
 @login_required
 def add_product(request):

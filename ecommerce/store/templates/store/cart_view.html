@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1 class=" mb-6 text-2xl">Cart</h1>
-    
+    {% if cart|length %}
     {% for item in cart %}
         <div class= "px-4 py-4 mb-2 bg-teal-100 align-center">
             <div>
@@ -36,5 +36,10 @@
     <hr class="mt-4 mb-4">
 
     <a href="{% url 'checkout' %}" class="inline-block px-8 py-4 bg-teal-500 text-white">Checkout</a>
+    {% else %}
+        <div class="px-6 py-6 bg-gray-400">
+            You don't have any products in your cart yet...
+        </div>
+    {% endif %}
 {% endblock %}
  
