@@ -4,14 +4,14 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 from django.utils.text import slugify
 from django.shortcuts import get_object_or_404
 
 from core.views import index
 from .models import Userprofile
-from store.forms import ProductForm
-from store.models import Product, Category, Order, OrderItem
+from store.forms import ProductForm, SignupForm
+from store.models import Product, Category, Order, OrderItem, SignUp
 
 # Create your views here.
 
@@ -25,6 +25,32 @@ def vendor_detail(request, pk):
         'products': products
     })
 
+def signups(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            user = User.objects.create_user(username='hero', first_name='first_name', last_name='last_name', email='email')
+            user = user.request
+            user = form.save(commit=True)
+            
+            login(request, user)
+
+            userprofile = Userprofile.objects.create(user=user)
+
+
+
+            messages.success(request, 'You have successfully signed up, Welcome!')
+            return redirect('index')
+    else:
+        form = SignupForm()
+
+    form = SignupForm()
+    return render(request, 'userprofile/signups.html', {
+        'form': form
+    })
+
+    
 @login_required
 def my_store(request):
     products = request.user.products.exclude(status=Product.DELETED)

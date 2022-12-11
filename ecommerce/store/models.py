@@ -95,3 +95,15 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, related_name="items", on_delete=models.CASCADE)
     price = models.IntegerField()
     quantity = models.IntegerField(default=1)
+
+class SignUp(models.Model):
+    created_by = models.OneToOneField(User, related_name="signup", null=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
+    # username = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=250)
+    zip_code = models.CharField(max_length=250)
+    city = models.CharField(max_length=250)
+    password = models.CharField(max_length=30)
+    as_vendor = models.BooleanField(default=False)
+    email = models.CharField(max_length=200, null=True)

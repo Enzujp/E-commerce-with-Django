@@ -6,5 +6,13 @@
     
     {% block content %}
         {% include 'store/partials/products.html' %}
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="mt-4 px-6 py-3 bg-teal-200 text-teal-800">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
         
     {% endblock %}
