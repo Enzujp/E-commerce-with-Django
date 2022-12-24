@@ -32,7 +32,7 @@ def signups(request):
         if form.is_valid():
             user = User.objects.create_user(username='hero', first_name='first_name', last_name='last_name', email='email')
             user = user.request
-            user = form.save(commit=True)
+            user = form.save()
             
             login(request, user)
 

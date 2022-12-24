@@ -33,7 +33,7 @@ class ProductForm(forms.ModelForm):
 class SignupForm(forms.ModelForm):
     class Meta:
         model = SignUp
-        fields = ('first_name', 'last_name', 'address', 'zip_code', 'city','email',)
+        fields = ('first_name', 'last_name', 'address', 'zip_code', 'city','email','as_vendor')
         widgets = {
             'first_name': forms.TextInput(attrs={
                 'class': 'w-full p-4 border border-gray-200'
@@ -53,7 +53,5 @@ class SignupForm(forms.ModelForm):
             'email': forms.TextInput(attrs={
                 'class': 'w-full p-4 border border-gray-200'
             }),
-            # 'username': forms.TextInput(attrs={
-            #     'class': 'w-full p-4 border border-gray-200'
-            # }),
+            'as_vendor': forms.BooleanField(),
         }
