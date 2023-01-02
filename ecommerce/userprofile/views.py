@@ -13,7 +13,7 @@ from .models import Userprofile
 from store.forms import ProductForm, SignupForm
 from store.models import Product, Category, Order, OrderItem, SignUp
 
-# Create your views here.
+
 
 def vendor_detail(request, pk):
     user = User.objects.get(pk)
