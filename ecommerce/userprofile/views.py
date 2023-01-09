@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 from core.views import index
 from .models import Userprofile
 from store.forms import ProductForm, SignupForm
-from store.models import Product, Category, Order, OrderItem
+from store.models import Product, Category, Order, OrderItem, User
 
 
 
@@ -129,19 +129,19 @@ def myaccount(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignupForm(request.POST)
 
         if form.is_valid():
             user = form.save()
 
             login(request, user)
-
-            userprofile = Userprofile.objects.create(user=user)
+            messages.success(request, 'Registration was successful!')
 
             return redirect('index')
+            
 
     else:
-        form = UserCreationForm()
+        form = SignupForm()
 
     return render(request, 'userprofile/signup.html', {
         'form': form
