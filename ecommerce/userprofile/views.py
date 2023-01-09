@@ -26,29 +26,29 @@ def vendor_detail(request, pk):
     })
      
 
-def signups(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
+# def signups(request):
+#     if request.method == 'POST':
+#         form = SignupForm(request.POST)
 
-        if form.is_valid():
-            user = User.objects.create_user(username, first_name='first_name', last_name='last_name', email='email')
-            user = form.save()
+#         if form.is_valid():
+#             user = User.objects.create_user(username, first_name='first_name', last_name='last_name', email='email')
+#             user = form.save()
             
-            login(request, user)
+#             login(request, user)
 
-            userprofile = Userprofile.objects.create(user=user)
+#             userprofile = Userprofile.objects.create(user=user)
 
 
 
-            messages.success(request, 'You have successfully signed up, Welcome!')
-            return redirect('index')
-    else:
-        form = SignupForm()
+#             messages.success(request, 'You have successfully signed up, Welcome!')
+#             return redirect('index')
+#     else:
+#         form = SignupForm()
 
-    form = SignupForm()
-    return render(request, 'userprofile/signups.html', {
-        'form': form
-    })
+#     form = SignupForm()
+#     return render(request, 'userprofile/signups.html', {
+#         'form': form
+#     })
 
     
 @login_required
