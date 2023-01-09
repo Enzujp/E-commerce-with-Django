@@ -33,16 +33,37 @@ class ProductForm(forms.ModelForm):
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    first_name = forms.CharField(max_length=150, required=True)
-    last_name = forms.CharField(max_length=150, required=True)
+    first_name = forms.TextInput()
+    last_name = forms.TextInput()
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ("username", "email", "password1", "password2", "first_name", "last_name")
+
+        # widgets = {
+        #     'first_name': forms.Select(attrs={
+        #         'class': 'w-full p-4 border border-gray-200'
+        #     }),
+        #     'last_ name': forms.TextInput(attrs={
+        #         'class': 'w-full p-4 border border-gray-200'
+        #     }),
+        #     'username': forms.Textarea(attrs={
+        #         'class': 'w-full p-4 border border-gray-200'
+        #     }),
+        #     'password1': forms.TextInput(attrs={
+        #         'class': 'w-full p-4 border border-gray-200'
+        #     }),
+        #     'password2': forms.FileInput(attrs={
+        #         'class': 'w-full p-4 border border-gray-200'
+        #     }),
+        # }
+
 
     def save(self, commit=True):
         user = super(SignupForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
         if commit:
             user.save()
         return user
