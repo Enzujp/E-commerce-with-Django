@@ -4,8 +4,9 @@
       {
         "src": "ecommerce/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
-      },
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" },
+        "rewrites": [{ "source": "/(.*)", "destination": "/" }] } 
+      ,
       {
         "src": "build_files.sh",
         "use": "@vercel/static-build",
