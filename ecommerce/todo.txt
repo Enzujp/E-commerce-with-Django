@@ -4,3 +4,6 @@ show placed orders in My Account
 ship app
 incoporate payment system later on
 just going to ship this thing first
+
+
+TRY A NEW HOSTING SITE
