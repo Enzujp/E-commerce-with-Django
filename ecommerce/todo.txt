@@ -4,6 +4,6 @@ show placed orders in My Account
 ship app
 incoporate payment system later on
 just going to ship this thing first
-
+add visual button for mystore and grant access to verified vendors
 
 TRY A NEW HOSTING SITE
