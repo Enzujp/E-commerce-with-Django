@@ -57,7 +57,7 @@ def my_store(request):
     order_items = OrderItem.objects.filter(product__user=request.user)
     return render(request, 'userprofile/my_store.html', {
         'products': products,
-        'order_items': order_items 
+        'order_items': order_items
     })
 
 @login_required
