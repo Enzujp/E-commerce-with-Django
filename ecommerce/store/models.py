@@ -10,6 +10,7 @@ from PIL import Image
 
 
 class Category(models.Model):
+    """Model class to help categorize products, and point users in the direction they seek"""
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50)
 
@@ -20,6 +21,7 @@ class Category(models.Model):
         return self.title
 
 class Product(models.Model):
+    """This model class represents details for Product uploads"""
     DRAFT = 'draft'
     WAITING_APPROVAL = 'waitingapproval'
     ACTIVE = 'active'
@@ -78,7 +80,9 @@ class Product(models.Model):
             else:
                 return 'https://via.placeholder.com/240x240x.jpg'
 
+
 class Order(models.Model):
+    """Model for collecting user info pertaining to Orders made"""
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     address = models.CharField(max_length=250)
@@ -90,7 +94,9 @@ class Order(models.Model):
     created_by = models.ForeignKey(User, related_name='orders', on_delete=models.SET_NULL,  null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
 class OrderItem(models.Model):
+    """Model for individual Order made, for direct accessibility to Order"""
     order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name="items", on_delete=models.CASCADE)
     price = models.IntegerField()
