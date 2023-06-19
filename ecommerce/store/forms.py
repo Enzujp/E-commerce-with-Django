@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import Product, Order, User
 
+# Forms for all created Django Models are stored here.
+
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
