@@ -1,4 +1,3 @@
-from msvcrt import open_osfhandle
 from django.db import models
 from django.contrib.auth.models import User
 

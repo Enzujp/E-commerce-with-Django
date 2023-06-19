@@ -27,10 +27,21 @@
                     </button>
                 </form>
             </div>
+
     
 
-            <div class="menu flex items-center space-x-4">
-                {% menu %}
+            <div class="menu flex items-center space-x-4">             
+                {% if request.user.is_authenticated %}
+                    {% for category in categories %}
+                        <a href="{% url 'category_detail' category.slug  %}" class="text-white">{{category.title}}</a>
+                    {% endfor %}
+            
+                    <a href="{% url 'about'  %}" class="text-white">About</a>
+
+                {% else %}
+                    {% menu %}
+                    <a href="{% url 'about'  %}" class="text-white">About</a>
+                {% endif %}
 
                 <a href="{% url 'cart_view' %}" class="flex space-x-3 py-2 px-4 bg-teal-800 text-white rounded-xl hover: bg-teal-800">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
