@@ -14,7 +14,7 @@ from store.forms import ProductForm, SignupForm
 from store.models import Product, Category, Order, OrderItem, User
 
 
-
+# This view yields vendor details and their uploaded, available products.
 def vendor_detail(request, pk):
     user = User.objects.get(pk)
     products = user.products.filter(status=Product.ACTIVE)
@@ -25,8 +25,9 @@ def vendor_detail(request, pk):
         'products': products
     })
      
-    
+   
 @login_required
+# This function displays products belonging to a vendor, as well as their pending orders
 def my_store(request):
     products = request.user.products.exclude(status=Product.DELETED)
     order_items = OrderItem.objects.filter(product__user=request.user)
@@ -35,7 +36,9 @@ def my_store(request):
         'order_items': order_items
     })
 
+
 @login_required
+# This function displays the specifics for an order
 def my_store_order_detail(request, pk):
     order = get_object_or_404(Order, pk=pk)
     return render(request, 'userprofile/my_store_order_detail.html', {
@@ -44,6 +47,7 @@ def my_store_order_detail(request, pk):
 
 
 @login_required
+# This function allows vendors add new product
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -67,6 +71,7 @@ def add_product(request):
     })
 
 @login_required
+# This function allows vendors edit already uploaded products
 def edit_product(request, pk):
     product = Product.objects.filter(user=request.user).get(pk=pk)
 
@@ -86,7 +91,9 @@ def edit_product(request, pk):
         'title': 'Edit product'
     })
 
+
 @login_required
+# This function allows a vendor delete or remove an uploaded product.
 def delete_product(request, pk):
     product = Product.objects.filter(user=request.user).get(pk=pk)
     product.status = product.DELETED
@@ -97,12 +104,14 @@ def delete_product(request, pk):
 
 
 @login_required
+# This funtion directs users directly to their accounts, where they can access functionalities tailored to their account type
 def myaccount(request):
     return render(request, 'userprofile/myaccount.html')
 
 
 
 def signup(request):
+# This function lets users signup for new accounts
     if request.method == 'POST':
         form = SignupForm(request.POST)
 

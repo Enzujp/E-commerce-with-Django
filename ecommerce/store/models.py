@@ -53,6 +53,8 @@ class Product(models.Model):
     def __str__ (self):
         return self.title 
 
+
+    # functions controlling images and thumbnails
     def make_thumbnail(self, image, size=(300, 300)):
         img = Image.open(image)
         thumb_io = BytesIO()
