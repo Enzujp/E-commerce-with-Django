@@ -1,9 +1,11 @@
 Fix signup issues - done
+add comments to entire code - done
+add visual button for mystore - done
+TRY A NEW HOSTING SITE- done
+
 create page to let vendors sort out orders which have been attended to or not.
 show placed orders in My Account
-ship app
-add comments to entire code
-just going to ship this thing first
-add visual button for mystore and grant access to verified vendors
+and grant access to verified vendors
 
-TRY A NEW HOSTING SITE- done
+
+ship app

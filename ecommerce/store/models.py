@@ -23,13 +23,16 @@ class Category(models.Model):
 class Product(models.Model):
     """This model class represents details for Product uploads"""
     DRAFT = 'draft'
-    WAITING_APPROVAL = 'waitingapproval'
+    SORTED = 'sorted'
+    UNSORTED = 'unsorted'
     ACTIVE = 'active'
     DELETED = 'deleted'
 
+
     STATUS_CHOICES= (
         (DRAFT, 'draft'),
-        (WAITING_APPROVAL, 'Waiting approval'),
+        (SORTED, 'Sorted'),
+        (UNSORTED, 'Unsorted'),
         (ACTIVE, 'Active'),
         (DELETED, 'Deleted')
     )
@@ -85,6 +88,14 @@ class Product(models.Model):
 
 class Order(models.Model):
     """Model for collecting user info pertaining to Orders made"""
+
+    SORTED = 'sorted'
+    UNSORTED = 'unsorted'
+
+    STATUS_CHOICES= (
+        (SORTED, 'Sorted'),
+        (UNSORTED, 'Unsorted')
+    )
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     address = models.CharField(max_length=250)
@@ -95,11 +106,24 @@ class Order(models.Model):
     merchant_id = models.CharField(max_length=250)
     created_by = models.ForeignKey(User, related_name='orders', on_delete=models.SET_NULL,  null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default=UNSORTED)
 
 
 class OrderItem(models.Model):
     """Model for individual Order made, for direct accessibility to Order"""
+    
+    SORTED = 'sorted'
+    UNSORTED = 'unsorted'
+
+    STATUS_CHOICES = (
+        (SORTED, 'Sorted'),
+        (UNSORTED, 'Unsorted')
+    )
+
     order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name="items", on_delete=models.CASCADE)
     price = models.IntegerField()
     quantity = models.IntegerField(default=1)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default=UNSORTED)
+    
+   

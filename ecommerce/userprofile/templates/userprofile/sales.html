@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Sales{% endblock %}
+
+{% block content %}
+    {% for sale in sales %}
+    <h1>{{ sales }}</h1>
+    {% endfor %}
+{% endblock %}

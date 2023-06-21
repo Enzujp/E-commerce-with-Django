@@ -19,47 +19,51 @@
 
 
     <div class="flex flex-wrap ">
-        <div class="w-1/5">
+        <div class="w-1/6">
             <strong>Order ID</strong>
         </div>
 
-        <div class="w-1/5">
+        <div class="w-1/6">
             <strong>Title</strong>
         </div>
 
-        <div class="w-1/5">
+        <div class="w-1/6">
             <strong>Quantity</strong>
         </div>
 
-        <div class="w-1/5">
+        <div class="w-1/6">
             <strong>Price</strong>
         </div>
 
-        <div class="w-1/5">
+        <div class="w-1/6">
             <strong>Ordered By</strong>
         </div>
     </div>
 
     {% for order_item in order_items %}
         <div class="flex flex-wrap ">
-            <div class="w-1/5">
+            <div class="w-1/6">
              <a href="{% url 'my_store_order_detail' order_item.order.id %}"> {{ order_item.order.id }}</a>
             </div>
 
-            <div class="w-1/5">
+            <div class="w-1/6">
                 {{ order_item.product.title }}
             </div>
 
-            <div class="w-1/5">
+            <div class="w-1/6">
                 {{ order_item.quantity }}
             </div>
 
-            <div class="w-1/5">
+            <div class="w-1/6">
                 ${{ order_item.product.price }}
             </div>
 
-            <div class="w-1/5">
+            <div class="w-1/6">
                 {{ order_item.product.user }}
+            </div>
+
+            <div class="w-1/6 mt-4 inline-block py-2 px-5 bg-teal-500 text-white">
+                <a href="{% url 'sorted' order_item.order.id %}">Sorted</a>
             </div>
         </div>
     {% endfor %}
