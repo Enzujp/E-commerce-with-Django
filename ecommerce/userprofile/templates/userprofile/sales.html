@@ -3,7 +3,50 @@
 {% block title %}My Sales{% endblock %}
 
 {% block content %}
-    {% for sale in sales %}
-    <h1>{{ sales }}</h1>
+<h2 class="mt-6 text-xl">My Sales</h2>
+    
+
+    <div class="flex flex-wrap p-2">
+
+        <div class="w-1/6">
+            <strong>Title</strong>
+        </div>
+
+        <div class="w-1/6">
+            <strong>Quantity</strong>
+        </div>
+
+        <div class="w-1/6">
+            <strong>Price</strong>
+        </div>
+
+        <div class="w-1/6">
+            <strong>Ordered By</strong>
+        </div>
+    </div>
+
+    {% for product in products %}
+
+    <div class="flex flex-wrap p-2">
+
+        <div class="w-1/6 px-2">
+            {{ product.title }}
+        </div>
+
+        <div class="w-1/6 px-2">
+            {{ order_item.quantity }}
+        </div>
+
+        <div class="w-1/6 px-2">
+            ${{ product.price }}
+        </div>
+
+        <div class="w-1/6 px-2">
+            {{ product.user }}
+        </div>
+
+    </div>
     {% endfor %}
+    <hr>
+
 {% endblock %}
