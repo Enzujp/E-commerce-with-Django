@@ -31,8 +31,8 @@ class Product(models.Model):
 
     STATUS_CHOICES= (
         (DRAFT, 'draft'),
-        (SORTED, 'Sorted'),
-        (UNSORTED, 'Unsorted'),
+        (SORTED, 'sorted'),
+        (UNSORTED, 'unsorted'),
         (ACTIVE, 'Active'),
         (DELETED, 'Deleted')
     )
@@ -93,8 +93,8 @@ class Order(models.Model):
     UNSORTED = 'unsorted'
 
     STATUS_CHOICES= (
-        (SORTED, 'Sorted'),
-        (UNSORTED, 'Unsorted')
+        (SORTED, 'sorted'),
+        (UNSORTED, 'unsorted')
     )
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
@@ -116,8 +116,8 @@ class OrderItem(models.Model):
     UNSORTED = 'unsorted'
 
     STATUS_CHOICES = (
-        (SORTED, 'Sorted'),
-        (UNSORTED, 'Unsorted')
+        (SORTED, 'sorted'),
+        (UNSORTED, 'unsorted')
     )
 
     order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)

@@ -30,8 +30,7 @@ def vendor_detail(request, pk):
 # This function displays products belonging to a vendor, as well as their pending orders
 def my_store(request):
     products = request.user.products.exclude(status=Product.UNSORTED)
-    # products = request.user.products.exclude(status=Product.SORTED)
-    order_items = OrderItem.objects.filter(product__user=request.user)
+    order_items = OrderItem.objects.filter(product__user=request.user).filter(status=OrderItem.SORTED)
     return render(request, 'userprofile/my_store.html', {
         'products': products,
         'order_items': order_items
@@ -40,7 +39,8 @@ def my_store(request):
 def sorted(request, pk):
 # This function lets vendors sort and separating what products they've cleared from their list of pending orders
     order_item = OrderItem.objects.filter(product__user=request.user).get(pk=pk)
-    order_item = order_item.SORTED # try mapping this for the sorted part
+    order_item.status = order_item.SORTED # try mapping this for the sorted part
+    order_item.save()
     messages.success(request, 'This item has been sorted')
     return redirect ('my_store')
 

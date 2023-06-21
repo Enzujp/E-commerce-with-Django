@@ -25,28 +25,34 @@
         </div>
     </div>
 
-    {% for product in products %}
+    {% for order_item in order_items %}
 
     <div class="flex flex-wrap p-2">
 
         <div class="w-1/6 px-2">
-            {{ product.title }}
+            {{ order_item.product.title }}
         </div>
 
         <div class="w-1/6 px-2">
-            {{ order_item.quantity }}
+            {{ order_item.product.quantity }}
+          
         </div>
 
         <div class="w-1/6 px-2">
-            ${{ product.price }}
+            ${{ order_item.price }}
         </div>
 
         <div class="w-1/6 px-2">
-            {{ product.user }}
+            {{ order_item.product.user }}
         </div>
 
     </div>
     {% endfor %}
     <hr>
+
+    {% if product.items.all %}
+        hallelujah
+
+    {% endif %}
 
 {% endblock %}
