@@ -8,6 +8,7 @@ from django.contrib.auth.models import User, auth
 from django.utils.text import slugify
 from django.shortcuts import get_object_or_404
 
+
 from core.views import index
 from .models import Userprofile
 from store.forms import ProductForm, SignupForm
