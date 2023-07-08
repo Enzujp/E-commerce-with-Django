@@ -7,5 +7,5 @@ create page to let vendors sort out orders which have been attended to or not.
 show placed orders in My Account
 and grant access to verified vendors
 
-
+change login colors for vendors and for customers, perhaps try out a purple color   
 ship app
